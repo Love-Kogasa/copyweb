@@ -4,7 +4,7 @@
   },
   "name": "copyweb",
   "description": "Use this module, u can<br>   1 copy a web to ur server<br>   2 create simple mirrors<br>   3 quickly download file<br>   4 IDK *** > then! Let's go <br> copyweb is very easy",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "main": "copyweb.js",
   "devDependencies": {},
   "scripts": {

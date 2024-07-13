@@ -4,6 +4,11 @@ const copyweb =
   const fs = require( "fs" ),
     { parse } = require( "url" ),
     mime = require( "mimetype" )
+  function createDirAndAppend( file ){
+    const dir = file.substring( 0, file.lastIndexOf( '/' ) )
+    if ( !fs.existsSync( dir ) ) {
+      fs.mkdirSync(dir, { recursive: true });}
+    fs.appendFileSync(file, '');}
   class basic {
     constructor( url = "http://example.com", setting = {} ){
       this.url = parse( url )
@@ -14,16 +19,19 @@ const copyweb =
       this.setting = set = {
         dir : setting.dir || "./server",
         callback : setting.callback ||
-          function(){} }
-      var __isRoot = this.__isRoot
+          function(){},
+        protocol : typeof setting.protocol == "string" ?
+          require( setting.protocol ) : pro,
+        server : setting.server || {}}
+      var isRoot = this.isRoot
       // 别碰这 要不作用域会出问题
-      var listen= this.pro.createServer(
+      var listen= set.protocol.createServer( set.server,
         function( req, res ){
           var { pathname, path } = parse( req.url )
-          pathname = __isRoot( pathname ) ? pathname + "index.html"
+          pathname = isRoot( pathname ) ? pathname + "index.html"
             : pathname
           set.callback( req, res )
-          fs.appendFileSync( set.dir + pathname, "" )
+          createDirAndAppend( set.dir + pathname )
           res.setHeader( "Content-Type", mime.lookup(
             set.dir + pathname, false
           ))
@@ -50,14 +58,14 @@ const copyweb =
     listen( port, cb ){
       return this.lis.listen( port, cb )
     }
-    __isRoot( pname ){
+    isRoot( pname ){
       if( pname.slice( -1 ) == "/" || pname == "" ) return true
       return false
     }
     static info(){
       return {
         author : [ "Love-Kogasa" ],
-        version : 1.0
+        version : 1.02
       }
     }
   }

@@ -1,14 +1,14 @@
 ## CopyWeb
 Use this module, u can<br>
-  1 copy a web to ur server<br>
-  2 create simple mirrors<br>
-  3 quickly download file<br>
-  4 IDK
+--1 copy a web to ur server<br>
+--2 create simple mirrors<br>
+--3 quickly download file<br>
+--4 IDK
 ***
 > then! Let's go <br>
 copyweb is very easy
 
-a little example ( another example in example.js ) :
+a little example:
 ```javascript
 const web = require( "copyweb" )
 new web( "http://example.com" )
@@ -17,14 +17,14 @@ new web( "http://example.com" )
   })
 ```
 If u want to learn more<br>
-Please see *another example* or *doc.md*
+Please see *example.js* or *doc.md*
 
 ## Chinese version
 使用本模块，你可以<br>
-  1 复制一个网页<br>
-  2 制作一个简单的镜像<br>
-  3 ~~批量偷文件~~<br>
-  4 ( 雾
+--1 复制一个网页<br>
+--2 制作一个简单的镜像<br>
+--3 ~~批量偷文件~~<br>
+--4 ( 雾
 ***
 > ~~go go go~~<br>
 Webcopy模块非常简单
@@ -40,7 +40,3 @@ new web( "http://example.com" )
 ```
 如果你想详细了解
 请见 *example.js* 或者 *doc.md*
-
-| Author |
-| --- |
-| LoveKogasa |

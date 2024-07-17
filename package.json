@@ -4,9 +4,8 @@
   },
   "name": "copyweb",
   "description": "Use this module, u can<br>   1 copy a web to ur server<br>   2 create simple mirrors<br>   3 quickly download file<br>   4 IDK *** > then! Let's go <br> copyweb is very easy",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "copyweb.js",
-  "devDependencies": {},
   "scripts": {
     "test": "node example"
   },
@@ -21,7 +20,7 @@
     "mirror",
     "easy"
   ],
-  "author": "Love-Kogasa",
+  "author": "LiYingchao( Online name: Love Kagasa )",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Love-Kogasa/copyweb/issues"

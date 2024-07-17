@@ -22,6 +22,8 @@ const copyweb =
           function(){},
         protocol : typeof setting.protocol == "string" ?
           require( setting.protocol ) : pro,
+        onload : setting.onload ||
+          function(){},
         server : setting.server || {}}
       var isRoot = this.isRoot
       // 别碰这 要不作用域会出问题
@@ -30,19 +32,18 @@ const copyweb =
           var { pathname, path } = parse( req.url )
           pathname = isRoot( pathname ) ? pathname + "index.html"
             : pathname
-          set.callback( req, res )
           createDirAndAppend( set.dir + pathname )
           res.setHeader( "Content-Type", mime.lookup(
             set.dir + pathname, false
           ))
           pro.get( url + path, function( resource ){
             if( resource.statusCode < 400 ){
-              // 写入流不创建文件啊啊啊啊啊啊啊啊啊啊啊 qwq
               const write = fs.
                 createWriteStream( set.dir + pathname )
               /* 这样是为了下载二进制文件 */
               resource.pipe( write )
               // 合并到写入流
+              set.onload( path, resource )
             }
           } )
           var body = fs.readFileSync( set.dir + pathname )
@@ -50,6 +51,7 @@ const copyweb =
             body = "Please wait a moment and reload"
           }
           res.write( body )
+          set.callback( req, res )
           res.end()
         }
       )
